@@ -1,0 +1,50 @@
+1- Bir listeyi düzleştiren (flatten) fonksiyon yazın. Elemanları birden çok katmanlı listelerden ([[3],2] gibi) oluşabileceği gibi, non-scalar verilerden de oluşabilir. Örnek olarak:
+input: [[1,'a',['cat'],2],[[[3]],'dog'],4,5]
+
+output: [1,'a','cat',2,3,'dog',4,5]
+
+2- Verilen listenin içindeki elemanları tersine döndüren bir fonksiyon yazın. Eğer listenin içindeki elemanlar da liste içeriyorsa onların elemanlarını da tersine döndürün. Örnek olarak:
+input: [[1, 2], [3, 4], [5, 6, 7]]
+
+output: [[[7, 6, 5], [4, 3], [2, 1]]
+
+-----------------------------------------
+Cevap-1
+listpatika = [[1,'a',['cat'],2],[[[3]],'dog'],4,5]
+
+def flatten(n_l):
+    # yeni listemiz için 
+    flatList = [] 
+    # For döngüsü ile, iç-içe geçmiş her bir listeye ulaşalım.
+    for e in n_l: 
+    
+        if isinstance(e, list):
+            #döngüde liste olması ihtimaline karşı
+            flatList.extend(flatten(e))
+        else:
+            # Element  bir liste değilse, flatlist listeye ekliyoruz.
+            flatList.append(e)    
+    return flatList
+    
+print(flatten(listpatika)) 
+------------------------------------
+out:[1, 'a', 'cat', 2, 3, 'dog', 4, 5]
+
+---------------------------------------------------------
+Cevap2
+llist= [[1, 2], [3, 4], [5, 6, 7]]
+
+def ters_list(l):
+    for i in l:
+        i.reverse()
+        l.reverse()
+    return l
+ters_list(llist)
+------------------------------------------
+out:[[7, 6, 5], [4, 3], [2, 1]]
+
+
+
+
+
+
